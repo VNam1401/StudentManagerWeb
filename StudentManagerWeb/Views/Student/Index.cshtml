@@ -1,38 +1,44 @@
 ﻿@model List<Student>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <partial name="_ThongBao" />
+    <div>
+        <a asp-action="Add" class="btn btn-primary">
+            <i class="bi bi-patch-plus-fill"></i> Add Student
+        </a>
+    </div>
 
-
-
-<div>
-    <a asp-action="Add" class="btn btn-primary">
-        <i class="bi bi-patch-plus-fill"></i> Add Student
-    </a>
-</div>
-
-<div>
-    <table class="table table-bordered">
-        <tr>
-            <th>Id</th>
-            <th>FullName</th>
-            <th>Age</th>
-            <th>Email</th>
-            <th>Action</th>
-        </tr>
-        @foreach (var stu in Model)
-        {
+    <div>
+        <table class="table table-bordered">
             <tr>
-                <td>@stu.Id</td>
-                <td>@stu.FullName</td>
-                <td>@stu.Age</td>
-                <td>@stu.Mail</td>
-                <td>
-                    <a asp-action="Update" asp-route-id="@stu.Id">
-                        <i class="bi bi-pencil"></i> Update
-                    </a>
-                    <a asp-action="Delete" asp-route-id="@stu.Id">
-                        <i class="bi bi-trash-fill"></i> Delete
-                    </a>
-                </td>
+                <th>Id</th>
+                <th>FullName</th>
+                <th>Age</th>
+                <th>Email</th>
+                <th>Action</th>
             </tr>
-        }
-    </table>
-</div>
+            @foreach (var stu in Model)
+            {
+                <tr>
+                    <td>@stu.Id</td>
+                    <td>@stu.FullName</td>
+                    <td>@stu.Age</td>
+                    <td>@stu.Mail</td>
+                    <td>
+                        <a asp-action="Update" asp-route-id="@stu.Id" class="btn btn-primary btn-sm me-2">
+                            <i class="bi bi-pencil"></i> Update
+                        </a>
+                        <a asp-action="Delete" asp-route-id="@stu.Id" class="btn btn-danger btn-sm">
+                            <i class="bi bi-trash-fill"></i> Delete
+                        </a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+
+    <div class="statistics">
+        <h3>Thống kê</h3>
+        <p>Tổng số sinh viên: <strong>@ViewBag.TotalStudents</strong></p>
+        <p>Tuổi trung bình: <strong>@ViewBag.AverageAge.ToString("F2")</strong></p>
+    </div>

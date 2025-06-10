@@ -1,24 +1,38 @@
-﻿﻿@if (TempData["success"] != null)
+﻿<!-- SweetAlert2 CDN -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@if (TempData["success"] != null)
 {
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11">
-</script>
     <script>
         Swal.fire({
-            title: "@TempData["success"]",
+            title: "Thành công",
+            text: "@TempData["success"]",
             icon: "success",
+            confirmButtonText: "OK",
+            confirmButtonColor: "#28a745",
+            timer: 3000,
+            timerProgressBar: true,
+            showConfirmButton: true,
+            allowOutsideClick: true,
             draggable: true
         });
     </script>
 }
+
 @if (TempData["error"] != null)
 {
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         Swal.fire({
+            title: "Có lỗi xảy ra",
+            text: "@TempData["error"]",
             icon: "error",
-            title: "@TempData["error !"]",
-            text: "Failed!",
-            footer: '<a href="#">Why do I have this issue?</a>'
+            confirmButtonText: "Thử lại",
+            confirmButtonColor: "#dc3545",
+            showCancelButton: true,
+            cancelButtonText: "Đóng",
+            cancelButtonColor: "#6c757d",
+            allowOutsideClick: false,
         });
     </script>
 }
+
